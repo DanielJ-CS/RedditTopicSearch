@@ -50,7 +50,7 @@ def store_Comments(commentArray):
         for word in filteredArray:
             if word not in string.punctuation:
                 word = unicodedata.normalize('NFKD',word).encode('ascii', 'ignore')
-                if word != '':
+                if word != '' and  len(word) < 15 and word != "n't":
                     dictionary[word] = dictionary.get(word,0) + 1
 
 # A tolerance value on the number of words is needed so that the plot does not overpopulate
@@ -66,6 +66,7 @@ def plot_dict(numberOfWords):
     plt.xticks(xs,x)
     plt.xticks(rotation=90)
     plt.yticks(y)
+    plt.tight_layout()
     plt.savefig('netscore.png')
 
     plt.show()
